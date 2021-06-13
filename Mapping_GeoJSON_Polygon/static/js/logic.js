@@ -85,10 +85,10 @@ let baseMaps = {
 
   // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
-    center: [44.0, -80.0],
-    zoom: 2,
-    layers: [dark]
-})
+    center: [43.7, -79.3],
+    zoom: 11,
+    layers:[satelliteStreets]
+   })
 
 L.control.layers(baseMaps).addTo(map);
 
@@ -100,16 +100,16 @@ L.control.layers(baseMaps).addTo(map);
 //let torontoData = "https://github.com/asitkumar26/Mapping_Earthquakes/blob/Mapping_GeoJSON_Points/torontoRoutes.json";
 
 
-let torontoData = "http://localhost:8000/torontoRoutes.json"
+let torontoHoods = "http://localhost:8000/torontoRoutes.json"
 
 // Create a style for the lines.
-let myStyle = {
+/* let myStyle = {
   color: "#ffffa1",
   weight: 2
-}
+} */
 
 // Grabbing our GeoJSON data.
- d3.json(torontoData).then(function(data) {
+/*  d3.json(torontoData).then(function(data) {
     console.log(data);
   // Creating a GeoJSON layer with the retrieved data.
   L.geoJson(data,
@@ -121,7 +121,12 @@ let myStyle = {
    }
 
   }).addTo(map);
+ */
 
-  
+ //Accessing all Toronot neighborhood data
+ d3.json(torontoHoods).then(function(data) {
+  console.log(data);
+    L.geoJson(data).addTo(map)
+ 
  });
 
